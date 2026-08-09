@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fabianomoier.github.io/painel-clientes-waves/sitemap.xml
