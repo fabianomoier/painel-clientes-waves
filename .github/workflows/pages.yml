@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -22,6 +22,13 @@ jobs:
         uses: actions/checkout@v6
       - name: Build certified static release
         run: node scripts/build.mjs
+      - name: Persist generated release
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f public
+          git diff --cached --quiet || git commit -m "generated Waves release [skip ci]"
+          git push
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
         with:
