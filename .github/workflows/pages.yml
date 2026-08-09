@@ -1,4 +1,4 @@
-name: Validate and Deploy Waves Digital Launch
+name: Deploy Waves Digital Launch without Configure
 
 on:
   pull_request:
@@ -28,10 +28,6 @@ jobs:
           test -f public/sitemap.xml
           test -f public/robots.txt
           test "$(find public -name index.html | wc -l | tr -d ' ')" -eq 71
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
